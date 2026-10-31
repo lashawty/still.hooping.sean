@@ -1,21 +1,31 @@
 # still.hooping.sean
 
-Sean 的 Instagram 帳號內容產線。用 `instagram-agent` 和 `marketing-skills` 兩組 plugin 產內容，發布前一律走 `speak-human-tw`。
+Sean 的 Instagram 帳號 @still.hooping.sean 的幕後數據站。AI 在這裡只做一件事：把每一支影片的數據算清楚給 Sean 看。品牌方向和第一季目標在 README.md。
 
-## 規則 0：所有可發布內容，輸出前必走 `speak-human-tw`
+## 規則 0：AI 不碰內容
 
-這兩組 plugin 都是英文的，產出的東西會有英文思路和 AI 味。所以：
+不想題目、不寫腳本、不寫 caption、不寫 hashtag、不回留言、不給「下一集可以拍什麼」的建議。Sean 沒開口要，就連草稿都不要出。那些是他的聲音。
 
-- 任何「可以直接貼去發布」的文字（Reel 腳本、口白、字幕、caption、hashtag、Story 文案、留言、回覆、DM、輪播文字），在給 Sean 看之前，都要先用 `speak-human-tw`（在本 repo `.claude/skills/speak-human-tw/`）過一遍。
-- 順序固定：先跑 `/ig-*` 或 `/marketing-skills:*` 產草稿 → 跑 `speak-human-tw` 去 AI 味、校正台灣用語與全形標點 → 再給 Sean。
-- `instagram-agent` 自己的 `/ig-human` 是英文的 humanizer，對中文沒用。中文內容一律用 `speak-human-tw` 取代，不要跑 `/ig-human`。
-- 最終輸出語言是繁體中文、台灣用語。除非 Sean 明確說要英文。
+`instagram-agent` 和 `marketing-skills` 這兩組 plugin 雖然啟用著，裡面產內容的 skill（`/ig-reel`、`/ig-caption`、`/ig-story`、`/ig-carousel`、`/ig-comment`、`/ig-reply`、`/ig-dm`、`/ig-plan`、`/ig-human`、copywriting 之類）一律不要主動用。可以用的是看數據、做分析的部分（例如 `/ig-audit`、analytics）。
 
-不受此規則影響：分析報告、數據解讀、skill 內部的評分表（例如 hook 分數、profile 分數），這些是給 Sean 看的過程資料，不是發布內容。
+## AI 負責的事
 
-## 口吻檔
+1. 轉錄每一支新影片的口白和畫面字幕。本機 whisper.cpp，不上傳。
+2. 從 IG 網頁版洞察報告抓數據：瀏覽、觸及、互動、按讚、留言、儲存、追蹤、粉絲與非粉絲比例。
+3. 算比率：互動率、按讚率、儲存率、追蹤率。公式寫在 `reports/reels-report.md` 開頭，不要換。
+4. 每支影片寫三個重點，優點缺點都可以，但每一個都要有數字撐。
+5. 更新 `reports/reels-report.md` 和 `reports/reels-insights.csv`，再更新 README 的計分板。
 
-`instagram-agent` 的每個 skill 都會讀 `~/.claude/instagram/voice.md`。Sean 正在另一個對話轉錄自己發過的影片，voice.md 會從那些逐字稿生出來。voice.md 還沒出現之前，寫出來的稿子只能算半成品，要跟 Sean 說。
+## 數字的規矩
+
+- 每個比率旁邊都要看得到原始數。
+- IG 網頁版沒給的欄位（分享、轉發、完播率、平均觀看時間）直接寫「網頁版沒有」，不估、不推。
+- 超過一萬的數字網頁版只顯示到小數點一位（例如 23.1 萬），算出來的比率標「近似」。
+- 比較追蹤率時跳過 2026 年 6 月的前四支，那幾支的追蹤有朋友來追的成分。
+
+## 輸出語言
+
+報告一律繁體中文、台灣用語、全形標點。程式碼、檔名、指令、欄位名照原樣。
 
 ## Skill 安裝原則
 
