@@ -16,6 +16,18 @@ Sean 的 Instagram 帳號 @still.hooping.sean 的幕後數據站。AI 在這裡�
 4. 每支影片寫三個重點，優點缺點都可以，但每一個都要有數字撐。
 5. 更新 `reports/reels-report.md` 和 `reports/reels-insights.csv`，再更新 README 的計分板。
 
+## 參考影片：Sean 丟 Reel 網址過來時
+
+Sean 只要丟一個 IG Reel 網址（不是他自己的影片），不用問，直接做：
+
+1. 跑 `python3 tools/ref-reel.py <網址>`，它會下載、用 faster-whisper 轉口白、抽八格畫面。用 Read 看 `_strip.jpg` 核對畫面字幕，有聽錯的依字幕校正。
+2. 口白是英文或任何外文，一律翻成繁體中文，原文和翻譯都留。
+3. 一支影片一個檔案，存進 `references/`，檔名是這支口白的一句重點（繁體中文）。格式照 `references/` 裡現有的檔案。
+4. `references/README.md` 的索引表補一列。
+5. 這些不是 Sean 的影片，不碰 `reports/`、不動計分板、不寫三個重點，更不要從裡面推「下一集可以拍什麼」。
+
+這條流程在雲端容器裡處理影片，和 Sean 自己影片「本機 whisper.cpp，不上傳」的規矩是兩回事，Sean 已同意（2026-11-02）。IG 匿名抓取偶爾會被導去登入頁，腳本會自己重試，不需要 cookie。
+
 ## 數字的規矩
 
 - 每個比率旁邊都要看得到原始數。
