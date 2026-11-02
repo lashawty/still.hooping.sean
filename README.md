@@ -55,6 +55,8 @@
 reports/
 ├── reels-report.md          # 22 支逐字稿 + 數據 + 每支三個重點
 └── reels-insights.csv       # 同一份數據的表格版
+references/                  # 我丟給 AI 的別人的 Reels：逐字稿 + 繁中翻譯，一支一檔，檔名是一句重點
 scripts/                     # 每一集的腳本，我寫的。檔名「epNN-標題.md」
+tools/ref-reel.py            # 抓 Reel、轉口白、抽畫面格，給 references/ 用
 CLAUDE.md                    # 給 Claude Code 的工作規則
 ```
